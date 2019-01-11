@@ -1,0 +1,56 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Typos
+alias cta='cat'
+alias gerp='grep'
+alias sl='ls'
+
+# General
+alias c='clear'
+alias k='kill'
+alias null='/dev/null'
+alias py='python'
+alias mem='free -th --si'
+
+# Directories
+alias home='cd ~'
+alias dtop='cd ~/Desktop'
+alias dload='cd ~/Downloads'
+
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ..; cd ..'
+alias ....='cd ..; cd ..; cd ..'
+
+# Github
+alias u='git add -u'
+alias com='git commit -m'
+alias all='git add .'
+alias st='git status'
+
+
+# Pacman
+alias spac='sudo pacman'
+alias pac='pacman'
+
+alias pacs='sudo pacman -S'
+alias pacS='sudo pacman -S'
+
+alias pacss='pacman -Ss'
+alias pacSs='pacman -Ss'
+alias search='pacman -Ss'
+
+alias update='sudo pacman -Syu'
+
+# ping
+alias pingg='ping -c 5 www.google.com'
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+neofetch
