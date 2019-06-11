@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="7680"
+   height="4320"
+   viewBox="0 0 2032 1143"
+   version="1.1"
+   id="svg888"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="UsbLinux3_Transparent.svg">
+  <defs
+     id="defs883" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.16458277"
+     inkscape:cx="436.2102"
+     inkscape:cy="1142.6254"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="3840"
+     inkscape:window-height="2083"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg888" />
+  <metadata
+     id="metadata886">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:197.05557251px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00afda;fill-opacity:1;stroke:none;stroke-width:6.10397053"
+     x="516.30145"
+     y="1112.3259"
+     id="text4564"
+     transform="scale(1.0403529,0.9612123)"><tspan
+       sodipodi:role="line"
+       id="tspan4562"
+       x="516.30145"
+       y="1112.3259"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans Bold Italic';fill:#1793d1;fill-opacity:1;stroke-width:6.10397053">UsbLinux</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00afda;fill-opacity:1;stroke:none;stroke-width:0.5348193"
+     x="1110.4819"
+     y="957.93939"
+     id="text4588"
+     transform="scale(1.0106821,0.9894308)"><tspan
+       sodipodi:role="line"
+       id="tspan4586"
+       x="1110.4819"
+       y="957.93939"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';fill:#1793d1;fill-opacity:1;stroke-width:0.5348193">Based on Archlinux</tspan></text>
+</svg>

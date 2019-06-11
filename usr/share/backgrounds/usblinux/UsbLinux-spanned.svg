@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:xapRights="http://ns.adobe.com/xap/1.0/rights/"
+   xmlns:x="adobe:ns:meta/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="4000"
+   height="1200"
+   id="svg36"
+   sodipodi:docname="UsbLinux.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="765"
+     inkscape:window-height="425"
+     id="namedview38"
+     showgrid="false"
+     inkscape:zoom="0.6955"
+     inkscape:cx="2000"
+     inkscape:cy="600"
+     inkscape:window-x="2518"
+     inkscape:window-y="234"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg36" />
+  <metadata
+     id="metadata2">
+<?xpacket begin="" id=""?>    <x:xmpmeta>
+      <metadata>
+        <rdf:RDF>
+          <rdf:Description
+             rdf:about="">
+            <xapRights:Marked>True</xapRights:Marked>
+          </rdf:Description>
+          <rdf:Description
+             rdf:about="">
+            <xapRights:WebStatement
+               rdf:resource="http://www.xmple.com/wallpaper/linear-grey-black-gradient-highlight-3840x2160-c2-000000-2f4f4f-l-50-a-345-f-21-image/" />
+          </rdf:Description>
+          <rdf:Description
+             rdf:about="">
+            <xapRights:UsageTerms>
+              <rdf:Alt>
+                <rdf:li
+                   xml:lang="en">This work is licensed under a &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License&lt;/a&gt;.</rdf:li>
+              </rdf:Alt>
+            </xapRights:UsageTerms>
+          </rdf:Description>
+          <rdf:Description
+             rdf:about="">
+            <dc:title>
+              <rdf:Alt>
+                <rdf:li
+                   xml:lang="en">linear grey black gradient highlight dark slate gray 3840x2160 #000000 #2f4f4f 345° 50%</rdf:li>
+              </rdf:Alt>
+            </dc:title>
+          </rdf:Description>
+          <rdf:Description
+             rdf:about="">
+            <cc:license
+               rdf:resource="http://creativecommons.org/licenses/by-nc-nd/4.0/" />
+          </rdf:Description>
+          <rdf:Description
+             rdf:about="">
+            <cc:attributionName>xmple.com</cc:attributionName>
+          </rdf:Description>
+          <rdf:Description
+             rdf:about="">
+            <cc:morePermissions
+               rdf:resource="http://www.xmple.com" />
+          </rdf:Description>
+          <cc:Work
+             rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type
+               rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+            <dc:title>linear grey black gradient highlight dark slate gray 3840x2160 #000000 #2f4f4f 345° 50%</dc:title>
+          </cc:Work>
+        </rdf:RDF>
+      </metadata>
+    </x:xmpmeta>
+<?xpacket end="r"?>  </metadata>
+  <title
+     id="title4">linear grey black gradient highlight dark slate gray 3840x2160 #000000 #2f4f4f 345° 50%</title>
+  <desc
+     id="desc6">linear grey black gradient highlight dark slate gray 3840x2160 #000000 #2f4f4f 345° 50%</desc>
+  <style
+     type="text/css"
+     id="style8"><![CDATA[.x{font:20px verdana;fill:#fff;stroke:#555;stroke-width:20px;opacity:0.35;}.o{stroke:none;opacity:0.01;}]]></style>
+  <defs
+     id="defs17">
+    <linearGradient
+       id="p1"
+       x1="2880"
+       y1="2125.95"
+       x2="0"
+       y2="754.05005"
+       gradientTransform="scale(1.3888888,0.41666666)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         style="stop-color:#000000;stop-opacity:1"
+         id="stop10" />
+      <stop
+         offset="50%"
+         style="stop-color:#2f4f4f;stop-opacity:1"
+         id="stop12" />
+      <stop
+         offset="100%"
+         style="stop-color:#000000;stop-opacity:1"
+         id="stop14" />
+    </linearGradient>
+  </defs>
+  <rect
+     width="4000"
+     height="1200"
+     x="0"
+     y="-1.7053026e-13"
+     id="rect19"
+     style="fill:#000000;stroke-width:0.7607258" />
+  <rect
+     width="4000"
+     height="1200"
+     x="0"
+     y="0"
+     id="rect21"
+     style="fill:url(#p1);stroke-width:0.7607258" />
+  <path
+     class="x o"
+     d="m 85,-475 h 2 v 1 h -1 v 1 h 1 v 1 h -2 z m -1,-2 h 4 v 1 h 1 v 5 h -1 v 1 h -4 v -1 h -1 v -5 h 1 v 5 h 4 v -5 h -4 z m 7,1 h 1 v 2 h 1 v -2 h 1 v 2 h -1 v 1 h 1 v 2 h -1 v -2 h -1 v 2 h -1 v -2 h 1 v -1 h -1 z m 4,0 h 5 v 5 h -1 v -4 h -1 v 4 h -1 v -4 h -1 v 4 h -1 z m 6,0 h 3 l -1,1 h -1 v 3 h 1 v -3 l 1,-1 v 5 h -2 v 2 h -1 z m 4,-2 h 1 v 6 h 1 v 1 h -2 z m 3,2 h 3 l -1,1 h -1 v 1 h 1 v -1 l 1,-1 v 3 h -2 v 1 h 2 v 1 h -3 z m 4,4 h 1 v 1 h -1 z m 2,-4 h 3 v 1 h -2 v 3 h 2 v 1 h -3 z m 4,0 h 3 v 5 h -3 l 1,-1 h 1 v -3 h -1 v 3 l -1,1 z m 4,0 h 5 v 5 h -1 v -4 h -1 v 4 h -1 v -4 h -1 v 4 h -1 z"
+     id="path23"
+     inkscape:connector-curvature="0"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:normal;font-family:verdana;opacity:0.01000001;fill:#ffffff;stroke:none;stroke-width:20px" />
+  <text
+     x="84"
+     y="1674"
+     class="x o"
+     id="text25"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:normal;font-family:verdana;opacity:0.01000001;fill:#ffffff;stroke:none;stroke-width:20px">© xmple.com</text>
+  <a
+     xlink:href="https://www.xmple.com"
+     id="a29"
+     transform="translate(80,-480)">
+    <text
+       x="3830"
+       y="22"
+       class="x o"
+       id="text27"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:normal;font-family:verdana;text-anchor:end;opacity:0.01000001;fill:#ffffff;stroke:none;stroke-width:20px">xmple.com</text>
+  </a>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:36px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#008080;fill-opacity:1;stroke:none;stroke-width:0.75801158"
+     x="1217.2695"
+     y="958.40356"
+     id="text4588"
+     transform="scale(1.0106821,0.9894308)"><tspan
+       sodipodi:role="line"
+       id="tspan4586"
+       x="1217.2695"
+       y="958.40356"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';fill:#008080;fill-opacity:1;stroke-width:0.75801158">Based on Archlinux</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:279.29138184px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#008080;fill-opacity:1;stroke:none;stroke-width:8.65129757"
+     x="386.70114"
+     y="1163.3483"
+     id="text4564-3"
+     transform="scale(1.0403529,0.9612123)"><tspan
+       sodipodi:role="line"
+       id="tspan4562-6"
+       x="386.70114"
+       y="1163.3483"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans Bold Italic';fill:#008080;fill-opacity:1;stroke-width:8.65129757">UsbLinux</tspan></text>
+</svg>
