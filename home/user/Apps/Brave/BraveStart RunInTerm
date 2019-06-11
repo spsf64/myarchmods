@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#sudo sysctl kernel.unprivileged_userns_clone=1 && brave
+
+echo -e "Input your password and just start Brave from menu!\nCheck this page: https://aur.archlinux.org/packages/brave-bin/"
+
+sudo sysctl kernel.unprivileged_userns_clone=1
+
+#!/usr/bin/env bash
+
