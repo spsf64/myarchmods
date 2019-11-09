@@ -1,0 +1,9 @@
+NAME="ArchLinux"
+ID=ArchLinux
+ID_LIKE="arch"
+VERSION_ID=2019.10.29
+PRETTY_NAME="ArchLinux"
+ANSI_COLOR="0;36"
+HOME_URL="https://archlinux.org"
+SUPPORT_URL="https://wiki.archlinux.org/"
+BUG_REPORT_URL="https://bugs.archlinux.org/"
