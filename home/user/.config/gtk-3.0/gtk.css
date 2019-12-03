@@ -1,0 +1,8 @@
+/* xfdesktop */
+XfdesktopIconView.view {
+	-XfdesktopIconView-ellipsize-icon-labels:1;
+	-XfdesktopIconView-tooltip-size:80;
+	-XfdesktopIconView-cell-spacing:0;
+	-XfdesktopIconView-cell-padding:3;
+	-XfdesktopIconView-cell-text-width-proportion:1.4;
+}
