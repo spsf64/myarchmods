@@ -27,7 +27,19 @@
     <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/leafpad</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">TRUE</annotate>
   </action>
+ 
+   <action id="org.1.pkexec.run-timeset-gui">
+    <message>Authentication is required to run timeset-gui</message>
+    <icon_name>preferences-desktop</icon_name>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/timeset-gui</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">TRUE</annotate>
+  </action>
 
-
+ 
 </policyconfig>
 
