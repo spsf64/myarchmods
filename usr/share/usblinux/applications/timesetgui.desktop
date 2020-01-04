@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=TimeSetGui
+Exec=pkexec timeset-gui
+Icon=timeset-gui-icon
+Terminal=false
+Type=Application
+Categories=Application;
+Keywords=time;date;clock
+Name[en_US]=TimeSetGui

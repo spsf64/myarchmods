@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Whalebird
+Comment=An Electron based Mastodon client for Windows, Mac and Linux
+Exec="/opt/Whalebird/whalebird" %U
+Terminal=false
+Type=Application
+Icon=whalebird
+StartupWMClass=Whalebird
+Categories=Network;

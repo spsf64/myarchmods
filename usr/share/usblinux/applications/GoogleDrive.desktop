@@ -1,0 +1,16 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Name=Drive
+Comment=Drive (Ice SSB)
+#Exec=google-chrome --app=https://www.google.com/drive/ --class=ICE-SSB-drive
+Exec=exo-open --launch WebBrowser %u --app=https://www.google.com/drive/ --class=ICE-SSB-drive
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/share/usblinux/icons/drive.png
+Categories=GTK;Network;
+MimeType=text/html;text/xml;application/xhtml_xml;
+StartupWMClass=ICE-SSB-drive
+StartupNotify=true
+Name[en_US]=GoogleDrive

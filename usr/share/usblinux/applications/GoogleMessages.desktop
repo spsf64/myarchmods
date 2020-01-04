@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Messages
+Comment=Messages (Ice SSB)
+Exec=exo-open --launch WebBrowser %u --app=https://messages.google.com/web --class=ICE-SSB-messages
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/share/usblinux/icons/msgs.png
+Categories=GTK;Network;
+MimeType=text/html;text/xml;application/xhtml_xml;
+StartupWMClass=ICE-SSB-messages
+StartupNotify=true
+Name[en_US]=GoogleMessages

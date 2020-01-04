@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Gzdoom
+Comment=Brutal Doom
+Exec=gzdoom /home/me/.config/gzdoom/brutalv21.pk3
+Icon=/usr/share/usblinux/icons/doom.png
+Terminal=false
+Categories=Game
+Name[en_US]=BrutalDoom

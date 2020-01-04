@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=WhatsApp
+Comment=WhatsApp (Ice SSB)
+Exec=exo-open --launch WebBrowser %u --app=https://web.whatsapp.com --class=ICE-SSB-whatsapp
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/share/usblinux/icons/whatsapp.png
+Categories=GTK;Network;
+MimeType=text/html;text/xml;application/xhtml_xml;
+StartupWMClass=ICE-SSB-whatsapp
+StartupNotify=true

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Duo
+Comment=Duo (Ice SSB)
+Exec=exo-open --launch WebBrowser %u --app=https://duo.google.com --class=ICE-SSB-duo
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/share/usblinux/icons/duo.png
+Categories=GTK;Network;
+MimeType=text/html;text/xml;application/xhtml_xml;
+StartupWMClass=ICE-SSB-duo
+StartupNotify=true
+Name[en_US]=GoogleDuo

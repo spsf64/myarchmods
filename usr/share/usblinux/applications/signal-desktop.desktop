@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Signal
+Exec=/opt/Signal/signal-desktop --no-sandbox %U
+Terminal=false
+Type=Application
+Icon=signal-desktop
+StartupWMClass=Signal
+Comment=Private messaging from your desktop
+Categories=Network;InstantMessaging;Chat;
+Actions=Tray;
+[Desktop Action Tray]
+Exec="/opt/Signal/signal-desktop" --start-in-tray %U
+Name=Start in Tray
