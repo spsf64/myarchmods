@@ -1,0 +1,701 @@
+#!/bin/bash
+#
+# EZ Arch Installer - UEFI
+# Revision: 3.1 -- by eznix (https://sourceforge.net/projects/ezos/)
+# (GNU/General Public License version 3.0)
+#
+#
+#
+#
+# ---------------------------------------
+# Define Functions:
+# ---------------------------------------
+#
+#
+handlerr () {
+clear
+echo " "
+set -uo pipefail
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+echo " "
+clear
+}
+#
+#
+welcome () {
+clear
+echo " "
+echo "====================================================="
+echo "=                                                   ="
+echo "=     Welcome to the EZArch Installer Script        ="
+echo "=                                                   ="
+echo "=     UEFI Edition                                  ="
+echo "=                                                   ="
+echo "=     Brought to you by eznix                       ="
+echo "=     https://sourceforge.net/projects/ezos/        ="
+echo "=                                                   ="
+echo "====================================================="     
+echo " "
+sleep 6
+clear
+}
+#
+#
+hrdclck () {
+clear
+echo " "
+timedatectl set-ntp true
+echo "$(curl https://ipapi.co/timezone)" > /tmp/timezone
+sleep 1
+MYTMZ="$(cat /tmp/timezone)"
+sleep 1
+echo " "
+clear
+}
+#
+#
+# Adapted from AIS. An excellent bit of code!
+arch_chroot() {
+    arch-chroot /mnt /bin/bash -c "${1}"
+}
+#
+#
+usrname () { 
+clear
+echo " "
+read -p "Type your user name, be exact, and press Enter: " USRNAME
+# echo "${USRNAME}" > /tmp/"${USRNAME}"
+clear
+echo " "
+echo "User name set to "${USRNAME}"..."
+sleep 2
+clear
+}
+#
+#
+usrpwd () { 
+clear
+echo " "
+read -p "Type your user password, be exact, and press Enter: " USRPWD
+# echo "${USRPWD}" > /tmp/"${USRPWD}"
+clear
+echo " "
+echo "User password set to "${USRPWD}"..."
+sleep 2
+clear
+}
+#
+#
+rtpwd () { 
+clear
+echo " "
+read -p "Type your root password, be exact, and press Enter: " RTPWD
+# echo "${RTPWD}" > /tmp/"${RTPWD}"
+clear
+echo " "
+echo "Root password set to "${RTPWD}"..."
+sleep 2
+clear
+}
+#
+#
+hstname () { 
+clear
+echo " "
+read -p "Type your hostname, be exact, and press Enter: " HSTNAME
+# echo "${HSTNAME}" > /tmp/"${HSTNAME}"
+clear
+echo " "
+echo "Hostname set to "${HSTNAME}"..."
+sleep 2
+clear
+}
+#
+#
+trgtdrvsd () { 
+clear
+echo " "
+read -p "Type your target device (e.g. sda), be exact, and press Enter: " TRGTDRV
+# echo "${TRGTDRV}" > /tmp/"${TRGTDRV}"
+clear
+echo " "
+echo "Target device set to "${TRGTDRV}"..."
+sleep 2
+clear
+}
+#
+#
+trgtdrvnv () { 
+clear
+echo " "
+read -p "Type your target device (e.g. nvme0n1), be exact, and press Enter: " TRGTDRV
+# echo "${TRGTDRV}" > /tmp/"${TRGTDRV}"
+clear
+echo " "
+echo "Target device set to "${TRGTDRV}"..."
+sleep 3
+clear
+}
+#
+#
+optmirrors () {
+clear
+echo " "
+hrdclck
+clear
+echo " "
+pacman -Syy
+pacman -Sy reflector
+reflector --latest 50 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+clear
+echo " "
+echo "Mirrorlist optimized for 50 fastest..."
+sleep 2
+clear
+}
+#
+#
+mkpartsd () {
+clear
+echo " "
+parted -s /dev/"${TRGTDRV}" mklabel gpt
+sgdisk -n 0:0:+512MiB -t 0:ef00 -c 0:efi /dev/"${TRGTDRV}"
+sgdisk -n 0:0:+4GiB -t 0:8200 -c 0:swap /dev/"${TRGTDRV}"
+sgdisk -n 0:0:+40GiB -t 0:8300 -c 0:root /dev/"${TRGTDRV}"
+sgdisk -n 0:0:0 -t 0:8300 -c 0:home /dev/"${TRGTDRV}"
+clear
+echo " "
+echo "Partitions created..."
+sleep 3
+clear
+}
+#
+#
+frmtpartsd () {
+clear
+echo " "
+mkswap -L swap /dev/"${TRGTDRV}"\2
+mkfs.fat -F32 /dev/"${TRGTDRV}"\1
+mkfs.ext4 -L root /dev/"${TRGTDRV}"\3
+mkfs.ext4 -L home /dev/"${TRGTDRV}"\4
+clear
+echo " "
+echo "Partitions formatted..."
+sleep 3
+clear
+}
+#
+#
+mntpartsd () {
+clear
+echo " "
+mount /dev/"${TRGTDRV}"\3 /mnt
+mkdir /mnt/efi
+mount /dev/"${TRGTDRV}"\1 /mnt/efi
+mkdir /mnt/home
+mount /dev/"${TRGTDRV}"\4 /mnt/home
+swapon /dev/"${TRGTDRV}"\2
+clear
+echo " "
+echo "Mounted partitions..."
+sleep 3
+clear
+}
+#
+#
+mkpartnv () {
+clear
+echo " "
+parted -s /dev/"${TRGTDRV}" mklabel gpt
+sgdisk -n 0:0:+512MiB -t 0:ef00 -c 0:efi /dev/"${TRGTDRV}"
+sgdisk -n 0:0:+4GiB -t 0:8200 -c 0:swap /dev/"${TRGTDRV}"
+sgdisk -n 0:0:+40GiB -t 0:8300 -c 0:root /dev/"${TRGTDRV}"
+sgdisk -n 0:0:0 -t 0:8300 -c 0:home /dev/"${TRGTDRV}"
+clear
+echo " "
+echo "Partitions created..."
+sleep 3
+clear
+}
+#
+#
+frmtpartnv () {
+clear
+echo " "
+mkswap -L swap /dev/"${TRGTDRV}"\p2
+mkfs.fat -F32 /dev/"${TRGTDRV}"\1
+mkfs.ext4 -L root /dev/"${TRGTDRV}"\p3
+mkfs.ext4 -L home /dev/"${TRGTDRV}"\p4
+clear
+echo " "
+echo "Partitions formatted..."
+sleep 3
+clear
+}
+#
+#
+mntpartnv () {
+clear
+echo " "
+mount /dev/"${TRGTDRV}"\p3 /mnt
+mkdir /mnt/efi
+mount /dev/"${TRGTDRV}"\p1 /mnt/efi
+mkdir /mnt/home
+mount /dev/"${TRGTDRV}"\p4 /mnt/home
+swapon /dev/"${TRGTDRV}"\p2
+clear
+echo " "
+echo "Mounted partitions..."
+sleep 3
+clear
+}
+#
+#
+psbase () {
+clear
+echo " "
+pacstrap /mnt base base-devel linux-lts linux-firmware sysfsutils e2fsprogs dosfstools mtools inetutils netctl device-mapper cryptsetup nano less lvm2 dialog reflector
+clear
+echo " "
+echo "Pacstrap base system complete..."
+sleep 2
+clear
+}
+#
+#
+sysconfig () {
+clear
+echo " "
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt rm -rf /etc/localtime
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/"${MYTMZ}" /etc/localtime
+arch-chroot /mnt echo ""${HSTNAME}"" > /etc/hostname
+arch-chroot /mnt echo "127.0.0.1          localhost" >> /etc/hosts
+arch-chroot /mnt echo "::1          localhost" >> /etc/hosts
+arch-chroot /mnt echo "127.0.1.1          "${HSTNAME}"\.localdomain "${HSTNAME}"" >> /etc/hosts
+arch-chroot /mnt echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+sleep 1
+arch-chroot /mnt locale-gen
+sleep 1
+arch-chroot /mnt echo "LANG=en_US.UTF-8" > /etc/locale.conf
+arch-chroot /mnt useradd -mU -s /bin/bash -G sys,log,network,floppy,scanner,power,rfkill,users,video,storage,optical,lp,audio,wheel,adm "${USRNAME}"
+arch-chroot /mnt echo ""${USRNAME}":"${USRPWD}"" | chpasswd --root /mnt
+arch-chroot /mnt echo "root:"${RTPWD}"" | chpasswd --root /mnt
+arch-chroot /mnt hwclock --systohc --utc
+clear
+echo " "
+echo "Basic system config completed..."
+sleep 2
+clear
+}
+#
+#
+instgrub () {
+clear
+echo " "
+arch-chroot /mnt pacman -Sy grub efibootmgr os-prober
+arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --recheck
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+arch-chroot /mnt mkinitcpio -p linux-lts
+clear
+echo " "
+echo "Grub installed & mkinicpio run..."
+sleep 3
+clear
+}
+#
+#
+instxorg () {
+clear
+echo " "
+pacstrap /mnt xorg xorg-apps xorg-server xorg-drivers xorg-xkill xorg-xinit xterm mesa
+clear
+echo " "
+echo "Xorg installed installed..."
+sleep 2
+clear
+}
+#
+#
+instgen () {
+clear
+echo " "
+pacstrap /mnt linux-lts-headers dkms p7zip archiso haveged pacman-contrib pkgfile git diffutils usbutils jfsutils reiserfsprogs btrfs-progs f2fs-tools logrotate man-db man-pages mdadm perl s-nail texinfo which xfsprogs lsscsi sdparm sg3_utils smartmontools fuse2 fuse3 ntfs-3g exfat-utils gvfs gvfs-afc gvfs-goa gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb unrar unzip unace xz xdg-user-dirs grsync ddrescue dd_rescue testdisk hdparm htop rsync hardinfo bash-completion geany lsb-release polkit ufw bleachbit packagekit gparted qt5ct qt5-styleplugins lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice papirus-icon-theme
+clear
+echo " "
+echo "General packages installed..."
+sleep 2
+clear
+}
+#
+#
+instmedia () {
+clear
+echo " "
+pacstrap /mnt pulseaudio vlc simplescreenrecorder cdrtools gstreamer gst-libav gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi gst-transcoder xvidcore frei0r-plugins cdrdao dvdauthor transcode alsa-utils alsa-plugins alsa-firmware pulseaudio-alsa pulseaudio-equalizer pulseaudio-jack ffmpeg ffmpegthumbnailer libdvdcss gimp guvcview imagemagick flac faad2 faac mjpegtools x265 x264 lame sox mencoder
+clear
+echo " "
+echo "Multimedia packages installed..."
+sleep 2
+clear
+}
+#
+#
+instnet () {
+clear
+echo " "
+pacstrap /mnt b43-fwcutter broadcom-wl-dkms intel-ucode ipw2100-fw ipw2200-fw net-tools networkmanager networkmanager-openvpn nm-connection-editor network-manager-applet wget curl firefox thunderbird wireless_tools nfs-utils nilfs-utils dhclient dnsmasq dmraid dnsutils openvpn openssh openssl samba whois iwd filezilla avahi openresolv youtube-dl vsftpd wpa_supplicant
+clear
+echo " "
+echo "Networking packages installed..."
+sleep 2
+clear
+}
+#
+#
+instfonts () {
+clear
+echo " "
+pacstrap /mnt ttf-ubuntu-font-family ttf-dejavu ttf-bitstream-vera ttf-liberation noto-fonts ttf-roboto ttf-opensans opendesktop-fonts cantarell-fonts freetype2 
+clear
+echo " "
+echo "Fonts packages installed..."
+sleep 2
+clear
+}
+#
+#
+instprint () {
+clear
+echo " "
+pacstrap /mnt system-config-printer foomatic-db foomatic-db-engine gutenprint hplip simple-scan cups cups-pdf cups-filters cups-pk-helper ghostscript gsfonts python-pillow python-pyqt5 python-pip python-reportlab 
+clear
+echo " "
+echo "Printing packages installed..."
+sleep 2
+clear
+}
+#
+#
+instlxqt () {
+clear
+echo " "
+pacstrap /mnt lxqt openbox obconf-qt pcmanfm-qt lxqt-sudo breeze-icons qterminal kwrite networkmanager-qt qbittorrent pavucontrol-qt quodlibet kdenlive k3b xarchiver galculator polkit-qt5 packagekit-qt5 xscreensaver 
+clear
+echo " "
+echo "LXQt desktop installed..."
+sleep 2
+clear
+}
+#
+#
+instkde () {
+clear
+echo " "
+pacstrap /mnt plasma breeze-icons kwrite qbittorrent pavucontrol-qt quodlibet print-manager sweeper dolphin kdenlive k3b ark konsole gwenview okular kcalc packagekit-qt5 
+clear
+echo " "
+echo "KDE Plasma desktop installed..."
+sleep 2
+clear
+}
+#
+#
+instxfce () {
+clear
+echo " "
+pacstrap /mnt xfce4 xfce4-goodies galculator transmission-gtk pavucontrol xfburn asunder libburn libisofs libisoburn quodlibet xarchiver arc-gtk-theme arc-icon-theme gtk-engine-murrine adapta-gtk-theme polkit-gnome gnome-disk-utility gufw gnome-packagekit 
+clear
+echo " "
+echo "XFCE desktop installed..."
+sleep 2
+clear
+}
+#
+#
+instmate () {
+clear
+echo " "
+pacstrap /mnt mate mate-extra mate-applet-dock adapta-gtk-theme arc-gtk-theme arc-icon-theme gtk-engine-murrine transmission-gtk brasero asunder quodlibet gnome-disk-utility gufw mate-polkit gnome-packagekit 
+clear
+echo " "
+echo "Mate desktop installed..."
+sleep 2
+clear
+}
+#
+#
+instcinn () {
+clear
+echo " "
+pacstrap /mnt cinnamon cinnamon-translations gnome-terminal adwaita-icon-theme adapta-gtk-theme arc-gtk-theme arc-icon-theme gtk-engine-murrine gnome-keyring nemo nemo-share xed file-roller nemo-fileroller tmux tldr transmission-gtk brasero asunder quodlibet gnome-disk-utility gufw polkit-gnome gnome-packagekit evince viewnior
+clear
+echo " "
+echo "Cinnamon desktop installed..."
+sleep 2
+clear
+}
+#
+#
+finsetup () {
+clear
+echo " "
+arch-chroot /mnt systemctl enable lightdm.service
+arch-chroot /mnt systemctl enable org.cups.cupsd.service
+arch-chroot /mnt systemctl enable NetworkManager
+clear
+echo " "
+echo " Display manager & NetworkManager enabled..."
+sleep 2
+clear
+}
+#
+#
+make_upht () {
+ clear
+ option=0
+ until [ "$option" = "5" ]; do
+ echo "----------------------------------"
+ echo " User, Passwords, & Hostname"
+ echo "----------------------------------"
+ echo " "
+ echo "  1) Create user name"
+ echo "  2) Make user password"
+ echo "  3) Make root password"
+ echo "  4) Make hostname"
+ echo " "
+ echo "  R) Return to menu"
+ echo " "
+ echo -n "Enter choice: "
+ read option
+ echo ""
+ case $option in
+ 1 ) usrname ;;
+ 2 ) usrpwd ;;
+ 3 ) rtpwd ;;
+ 4 ) hstname ;;
+ r|R ) main_menu ;;
+ 6 ) break ;;
+ esac
+#   }
+ done
+}
+#
+#
+sata_drv () {
+ clear
+ option=0
+ until [ "$option" = "5" ]; do
+ echo "--------------------------------"
+ echo " Partition Drive"
+ echo "--------------------------------"
+ echo " "
+ echo "  1) Enter device name (e.g.sda)"
+ echo "  2) Create partitions"
+ echo "  3) Format partitions"
+ echo "  4) Mount partitions"
+ echo " "
+ echo "  R) Return to menu"
+ echo " "
+ echo -n "Enter choice: "
+ read option
+ echo ""
+ case $option in
+ 1 ) trgtdrvsd ;;
+ 2 ) mkpartsd ;;
+ 3 ) frmtpartsd ;;
+ 4 ) mntpartsd ;;
+ r|R ) main_menu ;;
+ 6 ) break ;;
+ esac
+#   }
+ done
+}
+#
+#
+nvme_drv () {
+ clear
+ option=0
+ until [ "$option" = "5" ]; do
+ echo "--------------------------------"
+ echo " Partition Drive"
+ echo "--------------------------------"
+ echo " "
+ echo "  1) Enter device name (e.g.nvme0n1)"
+ echo "  2) Create partitions"
+ echo "  3) Format partitions"
+ echo "  4) Mount partitions"
+ echo " "
+ echo "  R) Return to menu"
+ echo " "
+ echo -n "Enter choice: "
+ read option
+ echo ""
+ case $option in
+ 1 ) trgtdrvnv ;;
+ 2 ) mkpartnv ;;
+ 3 ) frmtpartnv ;;
+ 4 ) mntpartnv ;;
+ r|R ) main_menu ;;
+ 6 ) break ;;
+ esac
+#   }
+ done
+}
+#
+#
+chdrvtype () {
+ clear
+ option=0
+ until [ "$option" = "3" ]; do
+ echo "-----------------------------------"
+ echo " Choose SATA or NVME Disk"
+ echo "-----------------------------------"
+ echo " "
+ echo "  1) SATA Disk"
+ echo "  2) NVME Disk"
+  echo " "
+ echo "  R) Return to menu"
+ echo " "
+ echo -n "Enter choice: "
+ read option
+ echo ""
+ case $option in
+ 1 ) sata_drv ;;
+ 2 ) nvme_drv ;;
+ r|R ) main_menu ;;
+ 4 ) break ;;
+ esac
+#   }
+ done
+}
+#
+#
+inst_soft () {
+ clear
+ option=0
+ until [ "$option" = "7" ]; do
+ echo "--------------------------------"
+ echo " Install Software Categories"
+ echo "--------------------------------"
+ echo " "
+ echo "  1) Xorg"
+ echo "  2) General"
+ echo "  3) Multimedia"
+ echo "  4) Networking"
+ echo "  5) Fonts"
+ echo "  6) Printing support"
+ echo " "
+ echo "  R) Return to menu"
+ echo " "
+ echo -n "Enter choice: "
+ read option
+ echo ""
+ case $option in
+ 1 ) instxorg ;;
+ 2 ) instgen ;;
+ 3 ) instmedia ;;
+ 4 ) instnet ;;
+ 5 ) instfonts ;;
+ 6 ) instprint ;;
+ r|R ) main_menu ;;
+ 8 ) break ;;
+ esac
+#   }
+ done
+}
+#
+#
+inst_desk () {
+ clear
+ option=0
+ until [ "$option" = "6" ]; do
+ echo "--------------------------------"
+ echo " Choose A Desktop"
+ echo "--------------------------------"
+ echo " "
+ echo "  1) LXQt"
+ echo "  2) Plasma"
+ echo "  3) XFCE"
+ echo "  4) Mate"
+ echo "  5) Cinnamon"
+ echo " "
+ echo "  R) Return to menu"
+ echo " "
+ echo -n "Enter choice: "
+ read option
+ echo ""
+ case $option in
+ 1 ) instlxqt ;;
+ 2 ) instkde ;;
+ 3 ) instxfce ;;
+ 4 ) instmate ;;
+ 5 ) instcinn ;;
+ r|R ) main_menu ;;
+ 7 ) break ;;
+ esac
+#   }
+ done
+}
+#
+#
+main_menu () {
+clear
+option=0
+until [ "$option" = "10" ]; do
+ echo "-------------------------------------"
+ echo " EZ Arch Installer - UEFI Systems"
+ echo "-------------------------------------"
+echo " "
+echo "  1) Username, Passwords, & Hostname"
+echo "  2) Optimize Mirrorlist"
+echo "  3) Choose Device Type & Partition Drive"
+echo "  4) Install Base System (pacstrap)"
+echo "  5) Configure System Settings"
+echo "  6) Install Broad Categories of Software"
+echo "  7) Choose Desktop"
+echo "  8) Install GRUB"
+echo "  9) Final Services Enabled"
+echo " "
+echo "  X) Exit"
+echo " "
+echo -n "Enter choice: "
+read option
+echo ""
+case $option in
+    1 ) make_upht ;;
+    2 ) optmirrors ;;
+    3 ) chdrvtype ;;
+    4 ) psbase ;;
+    5 ) sysconfig ;;
+    6 ) inst_soft ;;
+    7 ) inst_desk ;;
+    8 ) instgrub ;;
+    9 ) finsetup ;;
+    x|X ) exit;;
+esac
+done
+}
+#
+#
+handlerr
+welcome
+main_menu
+#
+#
+done
+#
+#
+# Disclaimer:
+#
+# THIS SOFTWARE IS PROVIDED BY EZNIX “AS IS” AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+# EVENT SHALL EZNIX BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
