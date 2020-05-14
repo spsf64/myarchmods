@@ -1,0 +1,19 @@
+git clone ssh://aur@aur.archlinux.org/mojave-gtk-theme.git
+
+edit PKGBUILD
+
+updpkgsums
+
+makepkg --printsrcinfo > .SRCINFO 
+
+Deletar files nao necessarios... (sources)
+
+git status # deve ficar o PKGBUILD e o .SRCINFO em modified e em vermelho
+
+git add .
+
+git status # deve ficar o PKGBUILD e o .SRCINFO verdes
+
+git commit -m "Update to 2020_03_24"
+
+git push
