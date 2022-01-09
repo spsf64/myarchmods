@@ -1,0 +1,18 @@
+[Added Associations]
+application/pdf=xreader.desktop;
+application/x-desktop=leafpad.desktop;
+application/x-shellscript=leafpad.desktop;
+image/png=pix.desktop;
+image/svg+xml=pix.desktop;
+x-scheme-handler/mailto=exo-mail-reader.desktop;
+x-scheme-handler/http=exo-web-browser.desktop;
+x-scheme-handler/https=exo-web-browser.desktop;
+
+[Default Applications]
+application/pdf=xreader.desktop
+application/x-shellscript=leafpad.desktop
+image/jpeg=pix.desktop
+image/png=pix.desktop
+image/svg+xml=pix.desktop
+
+inode/directory=thunar.desktop
