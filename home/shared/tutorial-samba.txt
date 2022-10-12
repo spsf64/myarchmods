@@ -1,0 +1,107 @@
+sudo pacman -S neovim
+sudo yay -S neovim-symlinks
+
+Copiar /etc/samba/smb.conf
+
+sudo pacman -S avahi nss-mdns samba smbclient cifs gvfs-smb smbnetfs
+
+sudo systemctl start avahi-daemon.service smb.service nmb.service
+
+sudo systemctl restart avahi-daemon.service smb.service nmb.service
+
+sudo systemctl enable avahi-daemon.service smb.service nmb.service
+
+sudo systemctl disable avahi-daemon.service smb.service nmb.service
+
+
+
+
+
+mkdir /home/Shared
+sudo chown nobody:users /home/Shared/
+sudo chmod 775 /home/Shared/
+sudo chmod g+s /home/Shared/
+
+sudo ln -s /home/Shared/ /etc/skel/
+ln -s /home/Shared/ /home/me/
+
+ ====  Novo  =====
+
+[global]
+    workgroup = WORKGROUP
+    server string = Samba Server
+    log file = /var/log/samba/%m.log
+    max log size = 50
+    security = user
+    map to guest = Bad User
+    # guest account = root
+    force user = nobody
+    guest account = nobody
+    guest ok = yes
+    map to guest = Bad User 
+#     usershare path = /var/lib/samba/usershares
+#     usershare max shares = 100
+#     usershare allow guests = yes
+#     usershare owner only = yes
+#    create mask = 0664
+    create mask = 0777
+    directory mask = 2777
+    force create mode = 0777
+    force directory mode = 2777
+ #   client min protocol = SMB2
+ 
+# Uncomment the line below if you want to connect to older client/server.
+# Please note that this makes you vulnerable to exploits in SMB1 including ransomware attacks!
+
+#   client min protocol = CORE
+
+[shared]
+    comment = Public share
+    path = /home/shared/
+    public = yes
+    read only = no
+    write list = nobody
+    printable = no
+
+#   client max protocol = NT1
+
+
+
+
+
+
+
+
+
+
+[global]
+    workgroup = WORKGROUP
+    server string = Samba Server
+    log file = /var/log/samba/%m.log
+    max log size = 50
+    security = user
+    map to guest = Bad User
+    # guest account = root
+    force user = nobody
+    guest account = nobody
+    guest ok = yes
+    map to guest = Bad User 
+#     usershare path = /var/lib/samba/usershares
+#     usershare max shares = 100
+#     usershare allow guests = yes
+#     usershare owner only = yes
+    create mask = 0664
+    directory mask = 2755
+    force create mode = 0644
+    force directory mode = 2755
+
+
+[Shared]
+    comment = Public share
+    path = /home/Shared/
+    public = yes
+    read only = no
+    write list = nobody
+    printable = no
+
+#   client max protocol = NT1
