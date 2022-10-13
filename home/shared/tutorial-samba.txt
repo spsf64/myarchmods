@@ -14,6 +14,7 @@ sudo systemctl enable avahi-daemon.service smb.service nmb.service
 sudo systemctl disable avahi-daemon.service smb.service nmb.service
 
 
+editar /usr/lib/system/smb.service delay 45s
 
 
 
