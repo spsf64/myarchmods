@@ -16,6 +16,8 @@ sudo systemctl disable avahi-daemon.service smb.service nmb.service
 
 editar /usr/lib/system/smb.service delay 45s
 
+verificar 
+Created symlink /etc/systemd/system/multi-user.target.wants/smb.service → /usr/lib/systemd/system/smb.service.
 
 
 mkdir /home/Shared
