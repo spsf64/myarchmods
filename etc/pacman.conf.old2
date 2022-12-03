@@ -14,9 +14,8 @@
 #CacheDir    = /var/cache/pacman/pkg/
 #LogFile     = /var/log/pacman.log
 #GPGDir      = /etc/pacman.d/gnupg/
-#HookDir     = /etc/pacman.d/hooks/
 HoldPkg     = pacman glibc
-#XferCommand = /usr/bin/curl -L -C - -f -o %o %u
+#XferCommand = /usr/bin/curl -C - -f %u > %o
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
 #UseDelta    = 0.7
@@ -33,11 +32,9 @@ Architecture = auto
 #UseSyslog
 Color
 ILoveCandy
-#NoProgressBar
+#TotalDownload
 CheckSpace
-VerbosePkgLists
-DisableDownloadTimeout
-ParallelDownloads = 5
+#VerbosePkgLists
 
 # By default, pacman accepts packages signed by keys that its local keyring
 # trusts (see pacman-key and its man page), as well as unsigned packages.
@@ -87,8 +84,8 @@ Include = /etc/pacman.d/mirrorlist
 [community]
 Include = /etc/pacman.d/mirrorlist
 
-# If you want to run 32 bit applications on your x86_64 system,
-# enable the multilib repositories as required here.
+# The multilib repositories are enabled by default in ArchLabs.
+# If you don't run 32 bit applications you may comment them out
 
 #[multilib-testing]
 #Include = /etc/pacman.d/mirrorlist
@@ -96,49 +93,25 @@ Include = /etc/pacman.d/mirrorlist
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 
-# An example of a custom package repository.  See the pacman manpage for
-# tips on creating your own repositories.
-#[custom]
-#SigLevel = Optional TrustAll
-#Server = file:///home/custompkgs
+### End Archlinux ###
 
-
-[chaotic-aur]
-SigLevel = Never
-Server = https://geo-mirror.chaotic.cx/$repo/$arch
-Server = https://random-mirror.chaotic.cx/$repo/$arch
-Server = https://cdn-mirror.chaotic.cx/$repo/$arch
-Server = https://us-fl-mirror.chaotic.cx/$repo/$arch
-Server = https://us-ny-mirror.chaotic.cx/$repo/$arch
 
 [archlinuxcn]
 SigLevel = Never
-Server = https://repo.archlinuxcn.org/$arch
 Server = http://repo.archlinuxcn.org/$arch
 
-[archlabs]
-SigLevel = Never
-Server = https://github.com/ArchLabs/$repo/raw/master/$arch
+# [archlabs_unstable]
+# Server = https://bitbucket.org/archlabslinux/$repo/raw/master/$arch
+
+[archlabs_repo]
 Server = https://bitbucket.org/archlabslinux/$repo/raw/master/$arch
 Server = https://sourceforge.net/projects/archlabs-repo/files/$repo/$arch
+Server = https://github.com/ARCHLabs/$repo/raw/master/$arch
 
-[endeavouros]
-#SigLevel = PackageRequired
-#Include = /etc/pacman.d/endeavouros-mirrorlist
+[namibrepo]
 SigLevel = Never
-Server = https://mirror.moson.org/endeavouros/repo/$repo/$arch
-Server = https://de.freedif.org/EndeavourOS/repo/$repo/$arch
-Server = https://mirror.alpix.eu/endeavouros/repo/$repo/$arch
+Server=https://namibrepo.meerkat.tk/$repo
 
-[alerque]
+[namibpap]
 SigLevel = Never
-Server = https://arch.alerque.com/$arch
-
-#[herecura]
-#Server = https://repo.herecura.be/$repo/$arch
-
-#[userrepository]
-#SigLevel = PackageOptional
-SigLevel = Never
-Server = https://userrepository.eu
-
+Server=https://namibrepo.meerkat.tk/$repo
