@@ -1,0 +1,16 @@
+sudo pacman -Syu --ignore pamac-classic,megasync-bin
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --removable
+sudo grub-install --target=i386-pc /dev/sdX
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+lsblk
+sudo rm /var/cache/pacman/pkg/*
+sudo rm /var/lib/pacman/sync/*
+sudo rm /etc/machine-id 
+sudo bleachbit
+sudo xed /etc/passwd
+sudo killall lightdm 
+sudo sync
+xrandr -s 1920x1080
+sudo pacman -Syyu
+sudo pacman -Syu
+exit
