@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Service
+Icon=system-file-manager
+Actions=OpenAsRootKDE5
+ServiceTypes=KonqPopupMenu/Plugin,inode/directory,inode/directory-locked
+
+[Desktop Action OpenAsRootKDE5]
+Exec=if [ "$XDG_SESSION_TYPE" = "wayland" ]; then xhost +si:localuser:root && pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true dbus-launch dolphin %U && xhost -si:localuser:root ; else pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true dolphin %U; fi;
+Icon=system-file-manager
+Name=Open as Root
+Name[de]=Öffnen des Ordners mit Root-Berechtigungen
+Name[fr]=Ouvrez le dossier avec les privilèges root
+Name[es]=Abrir la carpeta con privilegios de root
+Name[it]=Aprire la cartella con privilegi radice
+Name[pt_BR]=Abrir pasta com privilégios de root
+Name[pt_PT]=Abrir pasta com privilégios de root
