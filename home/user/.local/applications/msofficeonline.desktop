@@ -2,7 +2,7 @@
 Version=1.0
 Type=Link
 Name=MS Office
-Comment= Edit your Docs online with Microsoft Account
-Icon=ms-office
+Comment=Edit your Docs online with Microsoft Account
+Icon=x-office-presentation
 URL=https://www.office.com/
 Categories=Office;GTK;

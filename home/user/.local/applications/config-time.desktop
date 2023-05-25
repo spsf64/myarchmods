@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=Set Date Time and Zone
+Comment=
+Icon=org.xfce.panel.clock
+Exec=lxqt-admin-time
+Terminal=false
+Type=Application
+Path=
+StartupNotify=false
